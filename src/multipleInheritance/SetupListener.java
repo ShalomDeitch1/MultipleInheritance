@@ -42,8 +42,7 @@ public class SetupListener implements ServletContextListener {
 		}//for
 	}
 
-	private void addServletWithMapping(ServletContext servletContext,
-			Class<?> clazz, Method method) {
+	private void addServletWithMapping(ServletContext servletContext, Class<?> clazz, Method method) {
 		Annotation annotation = method.getAnnotation(RequestMapping.class);
 		RequestMapping mapping = (RequestMapping) annotation;
 		String path = mapping.value();
@@ -54,9 +53,7 @@ public class SetupListener implements ServletContextListener {
 			Dynamic addServlet = servletContext.addServlet(method.getName(),pojoService);
 			addServlet.addMapping(path);
 
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
